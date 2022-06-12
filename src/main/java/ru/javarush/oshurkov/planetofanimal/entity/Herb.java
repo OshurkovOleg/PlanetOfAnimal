@@ -1,4 +1,4 @@
 package ru.javarush.oshurkov.planetofanimal.entity;
 
-public class Flora {
+public class Herb {
 }

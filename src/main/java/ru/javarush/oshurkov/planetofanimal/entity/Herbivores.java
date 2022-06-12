@@ -1,4 +1,4 @@
 package ru.javarush.oshurkov.planetofanimal.entity;
 
-public class Herbivores {
+public abstract class Herbivores {
 }

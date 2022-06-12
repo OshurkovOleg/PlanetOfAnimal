@@ -1,6 +1,6 @@
 package ru.javarush.oshurkov.planetofanimal.entity;
 
-public class Animal {
+public abstract class Animal {
     int weight;
     int speedWalk;
     int sateity;
@@ -23,9 +23,6 @@ public class Animal {
         return null;
     }
 
-    void die() {
-
-    }
 
 
 }
