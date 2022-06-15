@@ -1,30 +1,79 @@
 package ru.javarush.oshurkov.planetofanimal;
 
-import ru.javarush.oshurkov.planetofanimal.entity.Island;
+import ru.javarush.oshurkov.planetofanimal.entity.Herbivores;
 import ru.javarush.oshurkov.planetofanimal.entity.Location;
-import ru.javarush.oshurkov.planetofanimal.entity.herbivores.Goat;
-import ru.javarush.oshurkov.planetofanimal.entity.predators.Wolf;
-import ru.javarush.oshurkov.planetofanimal.util.Counter;
-import ru.javarush.oshurkov.planetofanimal.util.PrintIsland;
+import ru.javarush.oshurkov.planetofanimal.entity.Map;
+import ru.javarush.oshurkov.planetofanimal.entity.herbivores.Horse;
+import ru.javarush.oshurkov.planetofanimal.util.Print;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Runner {
     public static void main(String[] args) {
 
-        // создали остров в виде массива
-        Location[][] island = new Island().getIsland();
+        Location[][] map = Map.ISLAND;
+        List<Herbivores> herbivoresList = map[0][1].getHerbivores();
+        herbivoresList.add(new Horse());
+        herbivoresList.add(new Horse());
+        herbivoresList.add(new Horse());
+        herbivoresList.add(new Horse());
+        herbivoresList.add(new Horse());
 
-        island[5][4] = new Location();
-        island[5][4].getHerbivoresAnimals().add(new Goat());
-        island[5][4].getHerbivoresAnimals().add(new Goat());
-        island[5][4].getHerbivoresAnimals().add(new Goat());
-        island[5][4].getPredatorsAnimals().add(new Wolf());
-        island[5][4].getPredatorsAnimals().add(new Wolf());
 
-        PrintIsland.printAllLocation(island);
-        
+        // добавили лошадь в клетку
 
+    /*    for (Herbivores herbivore : herbivoresList) {
+            if (herbivore instanceof Horse) {
+                Horse horse = (Horse) herbivore;
+                // нашли в локации лошадь
+
+                if (horse.getDirection() == 1) {
+                    List<Herbivores> herbivoresBecide = map[0][2].getHerbivores();
+                    herbivoresBecide.add(herbivore);
+                    herbivoresList.remove(herbivore);
+                }
+            }
+        }*/
+
+
+        for (int i = 0; i < Map.ISLAND.length; i++) {
+
+            for (int j = 0; j < Map.ISLAND[i].length - 1 ; j++) {
+
+                if (Map.ISLAND[i][j].getHerbivores().size() != 0) {
+                    List<Herbivores> list = Map.ISLAND[i][j].getHerbivores();
+                    for (Herbivores herbivores : list) {
+                        if (herbivores instanceof Horse) {
+                            Horse horse = (Horse) herbivores;
+
+                            if(horse.getDone()){
+                                break;
+                            }
+
+                            if (horse.getDirection() == 1) {
+
+                                List<Herbivores> rightHerbivores = Map.ISLAND[i][j + 1].getHerbivores();
+                                horse.setDone(true);
+                                rightHerbivores.add(herbivores);
+                                list.remove(herbivores);
+
+                            }
+
+                            if(horse.getDirection() == 0) {
+                                List<Herbivores> leftHerbivores = Map.ISLAND[i][j - 1].getHerbivores();
+                                horse.setDone(true);
+                                leftHerbivores.add(herbivores);
+                                list.remove(herbivores);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        Print.printMap(Map.ISLAND);
 
 
     }
