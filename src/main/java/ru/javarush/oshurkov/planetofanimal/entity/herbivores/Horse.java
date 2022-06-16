@@ -5,9 +5,9 @@ import ru.javarush.oshurkov.planetofanimal.util.Randomize;
 
 public class Horse extends Herbivores {
 
-    private int speed = 1;
-    private int direction = Randomize.getRandomNumber(2);
-    private boolean isDone = false;
+    public int speed = 4;
+    public int direction = Randomize.getRandomNumber(4);
+    public boolean isDone = false;
 
     public boolean getDone() {
         return isDone;

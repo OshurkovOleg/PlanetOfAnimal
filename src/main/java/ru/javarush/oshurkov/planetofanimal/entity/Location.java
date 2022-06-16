@@ -7,10 +7,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Location {
     private final List<Herbivores> herbivores = new CopyOnWriteArrayList<>();
-    private final List<Predators> predators = new ArrayList<>();
-    private List<Plant> plants = new ArrayList<>();
+    private final List<Predators> predators = new CopyOnWriteArrayList<>();
+    private final List<Plant> plants = new ArrayList<>();
 
-    public  List<Herbivores> getHerbivores() {
+    public List<Herbivores> getHerbivores() {
         return herbivores;
     }
 
@@ -22,14 +22,15 @@ public class Location {
         return plants;
     }
 
-    public void addHerb(Herbivores herbivoresAnimal){
+    public void addHerb(Herbivores herbivoresAnimal) {
         herbivores.add(herbivoresAnimal);
     }
-    public void addPred(Predators predatorsAnimal){
+
+    public void addPred(Predators predatorsAnimal) {
         predators.add(predatorsAnimal);
     }
 
-    public void addPlant(Plant plant){
+    public void addPlant(Plant plant) {
         plants.add(plant);
     }
 
